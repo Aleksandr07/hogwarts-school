@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class FacultyServiceImpl implements FacultyService{
 
     private final Map<Long, Faculty> facultyStorage = new HashMap<>();
-    private Long countId = 0L;
+    private long countId = 0;
 
     @Override
     public Faculty addFaculty(Faculty faculty) {
@@ -22,14 +22,10 @@ public class FacultyServiceImpl implements FacultyService{
             return faculty;
         }
         return null;
-
-//        faculty.setId(++countId);
-//        facultyStorage.put(countId, faculty);
-//        return faculty;
     }
 
     @Override
-    public Faculty getFaculty(Long id) {
+    public Faculty getFaculty(long id) {
         return facultyStorage.get(id);
     }
 
@@ -43,7 +39,7 @@ public class FacultyServiceImpl implements FacultyService{
     }
 
     @Override
-    public Faculty deleteFaculty(Long id) {
+    public Faculty deleteFaculty(long id) {
         return facultyStorage.remove(id);
     }
 

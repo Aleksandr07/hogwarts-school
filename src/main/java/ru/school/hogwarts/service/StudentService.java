@@ -7,10 +7,10 @@ import java.util.List;
 public interface StudentService {
     Student addStudent(Student student);
 
-    Student getStudent(Long id);
+    Student getStudent(long id);
 
     Student editStudent(Student student);
 
-    Student deleteStudent(Long id);
+    Student deleteStudent(long id);
     List<Student> getStudentFilteredByAge(int age);
 }

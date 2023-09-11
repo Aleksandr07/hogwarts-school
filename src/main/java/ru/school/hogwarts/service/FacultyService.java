@@ -7,11 +7,11 @@ import java.util.List;
 public interface FacultyService {
     Faculty addFaculty(Faculty faculty);
 
-    Faculty getFaculty(Long id);
+    Faculty getFaculty(long id);
 
     Faculty editFaculty(Faculty faculty);
 
-    Faculty deleteFaculty(Long id);
+    Faculty deleteFaculty(long id);
 
     List<Faculty> getFacultyFilteredByAge(String color);
 }

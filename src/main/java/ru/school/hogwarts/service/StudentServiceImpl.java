@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class StudentServiceImpl implements StudentService{
 
     private final Map<Long, Student> studentStorage = new HashMap<>();
-    private Long countId = 0L;
+    private long countId = 0;
 
     @Override
     public Student addStudent(Student student) {
@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student getStudent(Long id) {
+    public Student getStudent(long id) {
         return studentStorage.get(id);
     }
 
@@ -39,7 +39,7 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student deleteStudent(Long id) {
+    public Student deleteStudent(long id) {
         return studentStorage.remove(id);
     }
 
