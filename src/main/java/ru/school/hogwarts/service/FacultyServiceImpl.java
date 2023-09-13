@@ -2,51 +2,44 @@ package ru.school.hogwarts.service;
 
 import org.springframework.stereotype.Service;
 import ru.school.hogwarts.model.Faculty;
+import ru.school.hogwarts.repositories.FacultyRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class FacultyServiceImpl implements FacultyService{
 
-    private final Map<Long, Faculty> facultyStorage = new HashMap<>();
-    private long countId = 0;
+    private final FacultyRepository facultyRepository;
+
+    public FacultyServiceImpl(FacultyRepository facultyRepository) {
+        this.facultyRepository = facultyRepository;
+    }
 
     @Override
     public Faculty addFaculty(Faculty faculty) {
         if (!(faculty.getName() == null || faculty.getColor() == null)) {
-            faculty.setId(++countId);
-            facultyStorage.put(countId, faculty);
-            return faculty;
+            return facultyRepository.save(faculty);
         }
         return null;
     }
 
     @Override
     public Faculty getFaculty(long id) {
-        return facultyStorage.get(id);
+        return facultyRepository.findById(id).get();
     }
 
     @Override
     public Faculty editFaculty(Faculty faculty) {
-        if (facultyStorage.containsKey(faculty.getId())) {
-            facultyStorage.put(faculty.getId(), faculty);
-            return faculty;
-        }
-        return null;
+        return facultyRepository.save(faculty);
     }
 
     @Override
-    public Faculty deleteFaculty(long id) {
-        return facultyStorage.remove(id);
+    public void deleteFaculty(long id) {
+        facultyRepository.deleteById(id);
     }
 
     @Override
-    public List<Faculty> getFacultyFilteredByAge(String color) {
-        return facultyStorage.values().stream()
-                .filter(faculty -> faculty.getColor().equals(color))
-                .collect(Collectors.toList());
+    public List<Faculty> getFacultyFilteredByColor(String color) {
+        return facultyRepository.findByColor(color);
     }
 }

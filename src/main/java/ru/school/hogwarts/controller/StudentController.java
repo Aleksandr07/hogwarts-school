@@ -35,8 +35,8 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    @GetMapping("filterByAge/{age}")
-    public ResponseEntity<List<Student>> getStudentFilteredByAge(@PathVariable int age) {
+    @GetMapping
+    public ResponseEntity<List<Student>> getStudentFilteredByAge(@RequestParam(required = false) int age) {
         List<Student> students = studentService.getStudentFilteredByAge(age);
         if (students.size() == 0) {
             return ResponseEntity.badRequest().build();
@@ -45,20 +45,13 @@ public class StudentController {
     }
 
     @PutMapping()
-    public ResponseEntity<Student> editStudent(@RequestBody Student student) {
-        Student foundStudent = studentService.editStudent(student);
-        if (foundStudent == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(foundStudent);
+    public Student editStudent(@RequestBody Student student) {
+        return studentService.editStudent(student);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<Student> deleteStudent(@PathVariable Long id) {
-        Student student = studentService.deleteStudent(id);
-        if (student == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(student);
+        studentService.deleteStudent(id);
+        return ResponseEntity.ok().build();
     }
 }
