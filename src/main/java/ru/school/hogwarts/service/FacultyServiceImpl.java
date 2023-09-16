@@ -1,12 +1,12 @@
 package ru.school.hogwarts.service;
 
 import org.springframework.stereotype.Service;
+import ru.school.hogwarts.exceptions.EntityNotFoundException;
 import ru.school.hogwarts.model.Faculty;
-import ru.school.hogwarts.model.Student;
 import ru.school.hogwarts.repositories.FacultyRepository;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FacultyServiceImpl implements FacultyService{
@@ -27,7 +27,11 @@ public class FacultyServiceImpl implements FacultyService{
 
     @Override
     public Faculty getFaculty(long id) {
-        return facultyRepository.findById(id).get();
+        Optional<Faculty> faculty = facultyRepository.findById(id);
+        if (faculty.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        return faculty.get();
     }
 
     @Override
@@ -42,12 +46,8 @@ public class FacultyServiceImpl implements FacultyService{
 
 
     @Override
-    public List<Faculty> getFacultyByNameOrColor(String name, String color) {
-        return facultyRepository.findFacultyByNameIgnoreCaseOrColorIgnoreCase(name, color);
+    public List<Faculty> getFacultyByNameOrColor(String nameOrColor) {
+        return facultyRepository.findFacultyByNameIgnoreCaseOrColorIgnoreCase(nameOrColor, nameOrColor);
     }
 
-    @Override
-    public Collection<Student> getStudentsByFaculty(String facultyName) {
-        return facultyRepository.findFacultyByNameIgnoreCase(facultyName).getStudent();
-    }
 }

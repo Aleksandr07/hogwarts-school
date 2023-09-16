@@ -38,18 +38,13 @@ public class FacultyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Faculty>> getFacultyByNameOrColor(@RequestParam(required = false) String name,
-                                                                   @RequestParam(required = false) String color) {
-        List<Faculty> faculties = facultyService.getFacultyByNameOrColor(name, color);
-        if (faculties.size() == 0) {
-            return ResponseEntity.badRequest().build();
-        }
-        return ResponseEntity.ok(faculties);
+    public ResponseEntity<List<Faculty>> getFacultyByNameOrColor(@RequestParam String nameOrColor) {
+        return ResponseEntity.ok(facultyService.getFacultyByNameOrColor(nameOrColor));
     }
 
-    @GetMapping("/students")
-    public ResponseEntity<Collection<Student>> getStudentsByFaculty(@RequestParam String name) {
-        return ResponseEntity.ok(facultyService.getStudentsByFaculty(name));
+    @GetMapping("/{id}/students")
+    public ResponseEntity<Collection<Student>> getStudentsByFaculty(@PathVariable Long id) {
+        return ResponseEntity.ok(facultyService.getFaculty(id).getStudent());
     }
 
     @PutMapping()

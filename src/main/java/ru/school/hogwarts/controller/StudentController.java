@@ -50,9 +50,9 @@ public class StudentController {
         return ResponseEntity.badRequest().build();
     }
 
-    @GetMapping("/faculty")
-    public ResponseEntity<Faculty> getStudentFaculty(@RequestParam String name) {
-        return ResponseEntity.ok(studentService.getStudentFaculty(name));
+    @GetMapping("/{id}/faculty")
+    public ResponseEntity<Faculty> getStudentFaculty(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.getStudent(id).getFaculty());
     }
 
 
