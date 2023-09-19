@@ -1,10 +1,12 @@
 package ru.school.hogwarts.service;
 
 import org.springframework.stereotype.Service;
+import ru.school.hogwarts.exceptions.EntityNotFoundException;
 import ru.school.hogwarts.model.Student;
 import ru.school.hogwarts.repositories.StudentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -25,7 +27,11 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student getStudent(long id) {
-        return studentRepository.findById(id).get();
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isEmpty()) {
+            throw new EntityNotFoundException();
+        }
+        return student.get();
     }
 
     @Override
@@ -42,4 +48,12 @@ public class StudentServiceImpl implements StudentService{
     public List<Student> getStudentFilteredByAge(int age) {
         return studentRepository.findByAge(age);
     }
+
+    @Override
+    public List<Student> getStudentByAgeBetween(int minAge, int maxAge) {
+        return studentRepository.findStudentByAgeBetween(minAge, maxAge);
+    }
+
+
+
 }

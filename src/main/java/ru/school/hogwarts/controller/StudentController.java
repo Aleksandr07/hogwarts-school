@@ -2,10 +2,11 @@ package ru.school.hogwarts.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.school.hogwarts.model.Faculty;
 import ru.school.hogwarts.model.Student;
 import ru.school.hogwarts.service.StudentService;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("student")
@@ -36,13 +37,24 @@ public class StudentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Student>> getStudentFilteredByAge(@RequestParam(required = false) int age) {
-        List<Student> students = studentService.getStudentFilteredByAge(age);
-        if (students.size() == 0) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<Collection<Student>> getStudentFilteredByAge(@RequestParam(required = false) Integer age,
+                                                              @RequestParam(required = false) Integer minAge,
+                                                              @RequestParam(required = false) Integer maxAge) {
+
+        if (minAge != null && maxAge != null) {
+            return ResponseEntity.ok(studentService.getStudentByAgeBetween(minAge, maxAge));
         }
-        return ResponseEntity.ok(students);
+        if (age != null) {
+            return ResponseEntity.ok(studentService.getStudentFilteredByAge(age));
+        }
+        return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/{id}/faculty")
+    public ResponseEntity<Faculty> getStudentFaculty(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.getStudent(id).getFaculty());
+    }
+
 
     @PutMapping()
     public Student editStudent(@RequestBody Student student) {

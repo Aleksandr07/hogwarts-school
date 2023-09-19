@@ -13,4 +13,7 @@ public interface StudentService {
 
     void deleteStudent(long id);
     List<Student> getStudentFilteredByAge(int age);
+
+    List<Student> getStudentByAgeBetween(int minAge, int maxAge);
+
 }

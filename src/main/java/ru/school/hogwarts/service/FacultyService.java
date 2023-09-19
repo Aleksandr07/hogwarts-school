@@ -13,6 +13,8 @@ public interface FacultyService {
 
     void deleteFaculty(long id);
 
-    List<Faculty> getFacultyFilteredByColor(String color);
+
+    List<Faculty> getFacultyByNameOrColor(String nameOrColor);
+
 }
 
