@@ -48,8 +48,7 @@ public class FacultyController {
     }
 
     @PutMapping()
-    public Faculty editStudent(@RequestBody Faculty faculty) {
-
+    public Faculty editFaculty(@RequestBody Faculty faculty) {
         return facultyService.editFaculty(faculty);
     }
 
