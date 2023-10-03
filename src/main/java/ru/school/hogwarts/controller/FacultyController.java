@@ -28,6 +28,11 @@ public class FacultyController {
         return ResponseEntity.ok(addedFaculty);
     }
 
+    @GetMapping("all")
+    public ResponseEntity<List<Faculty>> findAllFaculty() {
+        return ResponseEntity.ok(facultyService.findAll());
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<Faculty> getFaculty(@PathVariable Long id) {
         Faculty faculty = facultyService.getFaculty(id);
@@ -37,7 +42,7 @@ public class FacultyController {
         return ResponseEntity.ok(faculty);
     }
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<Faculty>> getFacultyByNameOrColor(@RequestParam String nameOrColor) {
         return ResponseEntity.ok(facultyService.getFacultyByNameOrColor(nameOrColor));
     }
