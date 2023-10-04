@@ -1,7 +1,5 @@
 package ru.school.hogwarts.service;
 
-import ru.school.hogwarts.model.CountAverageAge;
-import ru.school.hogwarts.model.CountStudentInUniversity;
 import ru.school.hogwarts.model.Student;
 
 import java.util.List;
@@ -20,9 +18,9 @@ public interface StudentService {
 
     List<Student> findAll();
 
-    CountStudentInUniversity countStudentInUniversity();
+    Integer countStudentInUniversity();
 
-    CountAverageAge countAverageAge();
+    Double countAverageAge();
 
     List<Student> findFiveLastStudent();
 }

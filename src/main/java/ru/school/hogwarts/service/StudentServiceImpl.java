@@ -2,8 +2,6 @@ package ru.school.hogwarts.service;
 
 import org.springframework.stereotype.Service;
 import ru.school.hogwarts.exceptions.EntityNotFoundException;
-import ru.school.hogwarts.model.CountAverageAge;
-import ru.school.hogwarts.model.CountStudentInUniversity;
 import ru.school.hogwarts.model.Student;
 import ru.school.hogwarts.repositories.StudentRepository;
 
@@ -62,12 +60,12 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public CountStudentInUniversity countStudentInUniversity() {
+    public Integer countStudentInUniversity() {
         return studentRepository.countStudentInUniversity();
     }
 
     @Override
-    public CountAverageAge countAverageAge() {
+    public Double countAverageAge() {
         return studentRepository.countAverageAge();
     }
 

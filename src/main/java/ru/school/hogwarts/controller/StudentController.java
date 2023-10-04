@@ -2,8 +2,6 @@ package ru.school.hogwarts.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.school.hogwarts.model.CountAverageAge;
-import ru.school.hogwarts.model.CountStudentInUniversity;
 import ru.school.hogwarts.model.Faculty;
 import ru.school.hogwarts.model.Student;
 import ru.school.hogwarts.service.StudentService;
@@ -66,12 +64,12 @@ public class StudentController {
     }
 
     @GetMapping("count-student")
-    public ResponseEntity<CountStudentInUniversity> countStudentInUniversity() {
+    public ResponseEntity<Integer> countStudentInUniversity() {
         return ResponseEntity.ok(studentService.countStudentInUniversity());
     }
 
     @GetMapping("avg-age")
-    public ResponseEntity<CountAverageAge> countAverageAge() {
+    public ResponseEntity<Double> countAverageAge() {
         return ResponseEntity.ok(studentService.countAverageAge());
     }
 
