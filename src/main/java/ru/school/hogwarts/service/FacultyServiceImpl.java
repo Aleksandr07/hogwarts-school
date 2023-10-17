@@ -7,6 +7,7 @@ import ru.school.hogwarts.exceptions.EntityNotFoundException;
 import ru.school.hogwarts.model.Faculty;
 import ru.school.hogwarts.repositories.FacultyRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +66,14 @@ public class FacultyServiceImpl implements FacultyService{
     public List<Faculty> findAll() {
         logger.info("Was invoked method for get all faculty");
         return facultyRepository.findAll();
+    }
+
+    @Override
+    public String getLongestFacultyName() {
+        return findAll().stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparing(String::length))
+                .orElse("Наибольшее название факультета не найдено");
     }
 
 }

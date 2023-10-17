@@ -19,4 +19,9 @@ public class InfoController {
         Integer port = infoService.getPort();
         return ResponseEntity.ok(port);
     }
+
+    @GetMapping("get-int-value")
+    public ResponseEntity<Integer> getIntValue() {
+        return ResponseEntity.ok(infoService.getIntValue());
+    }
 }

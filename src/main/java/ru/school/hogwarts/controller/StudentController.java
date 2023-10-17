@@ -78,6 +78,16 @@ public class StudentController {
         return ResponseEntity.ok(studentService.findFiveLastStudent());
     }
 
+    @GetMapping("student-name-starts-with-A")
+    public ResponseEntity<List<String>> findStudentWhoseNameStartsWithA() {
+        return ResponseEntity.ok(studentService.findStudentWhoseNameStartsWithA());
+    }
+
+    @GetMapping("get-average-age")
+    public ResponseEntity<Double> getAverageAge() {
+        return ResponseEntity.ok(studentService.getAverageAge());
+    }
+
     @PutMapping()
     public Student editStudent(@RequestBody Student student) {
 
