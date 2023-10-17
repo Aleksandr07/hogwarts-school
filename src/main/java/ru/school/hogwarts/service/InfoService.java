@@ -11,7 +11,7 @@ public class InfoService {
     @Value("${server.port}")
     private int port;
 
-    Logger logger = LoggerFactory.getLogger(InfoService.class);
+    private final Logger logger = LoggerFactory.getLogger(InfoService.class);
 
     public Integer getPort() {
         logger.info("Was invoked method for get port");
