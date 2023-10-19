@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class InfoService {
 
@@ -18,4 +19,14 @@ public class InfoService {
         return port;
     }
 
+    public Integer getIntValue() {
+
+        logger.info("Was invoked method for calc value with modified logic that returns the value in the least amount of time");
+        int sumCycles = 0;
+        for (int i = 1; i <= 1_000_000; i++) {
+            sumCycles += i;
+        }
+
+        return sumCycles;
+    }
 }

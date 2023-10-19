@@ -23,4 +23,8 @@ public interface StudentService {
     Double countAverageAge();
 
     List<Student> findFiveLastStudent();
+
+    List<String> findStudentWhoseNameStartsWithA();
+
+    Double getAverageAge();
 }
