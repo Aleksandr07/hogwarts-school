@@ -88,6 +88,16 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getAverageAge());
     }
 
+    @GetMapping("get-six-students-name-with-parallel-threads")
+    public void getSixStudentsNameWithParallelThreads() {
+        studentService.getSixStudentsNameWithParallelThreads();
+    }
+
+    @GetMapping("get-six-students-name-with-synchronized-method")
+    public void getSixStudentsNameWithSynchronizedMethod() {
+        studentService.getSixStudentsNameWithSynchronizedMethod();
+    }
+
     @PutMapping()
     public Student editStudent(@RequestBody Student student) {
 
