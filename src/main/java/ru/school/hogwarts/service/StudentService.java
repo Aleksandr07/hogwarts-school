@@ -27,4 +27,8 @@ public interface StudentService {
     List<String> findStudentWhoseNameStartsWithA();
 
     Double getAverageAge();
+
+    void getSixStudentsNameWithParallelThreads();
+
+    void getSixStudentsNameWithSynchronizedMethod();
 }

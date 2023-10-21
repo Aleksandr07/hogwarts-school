@@ -111,5 +111,46 @@ public class StudentServiceImpl implements StudentService {
                 .orElse(0.0);
     }
 
+    @Override
+    public void getSixStudentsNameWithParallelThreads() {
+        logger.info("Was invoked method for get six students name with parallel threads");
+        List<Student> studentList = findAll();
+        System.out.println(studentList.get(0).getName());
+        System.out.println(studentList.get(1).getName());
+
+        new Thread(() -> {
+            System.out.println(studentList.get(2).getName());
+            System.out.println(studentList.get(3).getName());
+        }).start();
+
+        new Thread(() -> {
+            System.out.println(studentList.get(4).getName());
+            System.out.println(studentList.get(5).getName());
+        }).start();
+    }
+
+    @Override
+    public void getSixStudentsNameWithSynchronizedMethod() {
+        logger.info("Was invoked method for get six students name with synchronized method");
+        List<Student> studentList = findAll();
+        print(studentList.get(0).getName());
+        print(studentList.get(1).getName());
+
+        new Thread(() -> {
+            print(studentList.get(2).getName());
+            print(studentList.get(3).getName());
+        }).start();
+
+        new Thread(() -> {
+            print(studentList.get(4).getName());
+            print(studentList.get(5).getName());
+        }).start();
+    }
+
+
+
+    private synchronized void print(String name) {
+        System.out.println(name);
+    }
 
 }
